@@ -16,7 +16,7 @@ module Redsys
       Rails.configuration.redsys_rails[:signature_version]
     end
 
-    def initialize(amount, order, language, merchant_url = nil, url_ok = nil, url_ko = nil, merchant_name = nil, product_description = nil,merchant_identifier)
+    def initialize(amount, order, language, merchant_url = nil, url_ok = nil, url_ko = nil, merchant_name = nil, product_description = nil,merchant_identifier = nil)
       amount        ||= 0
       order         ||= 0
       language      ||= language_from_locale
@@ -25,7 +25,7 @@ module Redsys
       url_ko        ||= ''
       merchant_name ||= ''
       product_description ||=''
-      merchant_identifier ||='REQUIRED'
+      merchant_identifier ||=''
 
       @amount = (amount * 100).to_i.to_s
       #TODO: there should be a validation of the order format. So far we only make it a string of 12 positions
@@ -73,7 +73,7 @@ module Redsys
         :DS_MERCHANT_CURRENCY => @currency,
         :DS_MERCHANT_TRANSACTIONTYPE => @transaction_type,
         :DS_MERCHANT_TERMINAL => @terminal,
-        :DS_MERCHANT_MERCHANTURL => "https://back-dev.bclubber.com/notificaciones",
+        :DS_MERCHANT_MERCHANTURL => @merchant_url,
         :DS_MERCHANT_CONSUMERLANGUAGE => @language,
         :DS_MERCHANT_IDENTIFIER => @merchant_identifier,
         :DS_MERCHANT_URLOK => @url_ok,
