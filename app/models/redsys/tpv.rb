@@ -6,7 +6,7 @@ require 'rails-i18n'
 module Redsys
   class Tpv
     attr_accessor :amount, :language, :order, :currency, :merchant_code, :terminal,
-                  :transaction_type, :merchant_url, :url_ok, :url_ko, :sha1, :signature
+                  :transaction_type, :merchant_url,:merchant_identifier, :url_ok, :url_ko, :sha1, :signature
 
     def self.tpv_url
       Rails.configuration.redsys_rails[:url]
@@ -25,6 +25,7 @@ module Redsys
       url_ko        ||= ''
       merchant_name ||= ''
       product_description ||=''
+      merchant_identifier ||='REQUIRED'
 
       @amount = (amount * 100).to_i.to_s
       #TODO: there should be a validation of the order format. So far we only make it a string of 12 positions
@@ -35,7 +36,7 @@ module Redsys
       @url_ko = url_ko
       @merchant_name = merchant_name
       @product_description = product_description
-      @merchant_identifier = "REQUIRED"
+      @merchant_identifier = merchant_identifier
       @currency = Rails.configuration.redsys_rails[:merchant_currency]
       @merchant_code = Rails.configuration.redsys_rails[:merchant_code]
       @terminal = Rails.configuration.redsys_rails[:merchant_terminal]
@@ -80,6 +81,7 @@ module Redsys
         :DS_MERCHANT_MERCHANTNAME => @merchant_name,
         :DS_MERCHANT_PRODUCTDESCRIPTION => @product_description
       }
+      puts JSON.generate(merchant_parameters)
       JSON.generate(merchant_parameters)
     end
 
