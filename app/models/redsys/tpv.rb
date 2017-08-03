@@ -75,7 +75,7 @@ module Redsys
         :DS_MERCHANT_TERMINAL => @terminal,
         :DS_MERCHANT_MERCHANTURL => "https://back-dev.bclubber.com/notificaciones",
         :DS_MERCHANT_CONSUMERLANGUAGE => @language,
-        :DS_MECHANT_IDENTIFIER => @merchant_identifier,
+        :DS_MERCHANT_IDENTIFIER => @merchant_identifier,
         :DS_MERCHANT_URLOK => @url_ok,
         :DS_MERCHANT_URLKO => @url_ko,
         :DS_MERCHANT_MERCHANTNAME => @merchant_name,
