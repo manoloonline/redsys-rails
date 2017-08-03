@@ -35,6 +35,7 @@ module Redsys
       @url_ko = url_ko
       @merchant_name = merchant_name
       @product_description = product_description
+      @merchant_identifier = "REQUIRED"
       @currency = Rails.configuration.redsys_rails[:merchant_currency]
       @merchant_code = Rails.configuration.redsys_rails[:merchant_code]
       @terminal = Rails.configuration.redsys_rails[:merchant_terminal]
@@ -73,6 +74,7 @@ module Redsys
         :DS_MERCHANT_TERMINAL => @terminal,
         :DS_MERCHANT_MERCHANTURL => @merchant_url,
         :DS_MERCHANT_CONSUMERLANGUAGE => @language,
+        :DS_MECHANT_IDENTIFIER => @merchant_identifier,
         :DS_MERCHANT_URLOK => @url_ok,
         :DS_MERCHANT_URLKO => @url_ko,
         :DS_MERCHANT_MERCHANTNAME => @merchant_name,
