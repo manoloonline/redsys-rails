@@ -16,7 +16,7 @@ module Redsys
       Rails.configuration.redsys_rails[:signature_version]
     end
 
-    def initialize(amount, order, language, merchant_url = nil, url_ok = nil, url_ko = nil, merchant_name = nil, product_description = nil)
+    def initialize(amount, order, language, merchant_url = nil, url_ok = nil, url_ko = nil, merchant_name = nil, product_description = nil,merchant_identifier)
       amount        ||= 0
       order         ||= 0
       language      ||= language_from_locale
