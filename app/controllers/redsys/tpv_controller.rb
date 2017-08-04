@@ -25,5 +25,18 @@ module Redsys
       @tpv = Redsys::Tpv.new(amount, order, language, merchant_url, url_ok, url_ko, merchant_name, product_description,merchant_identifier)
     end
     
+    def request
+      require "uri"
+      require "net/http"
+      @tpv = Redsys::Tpv.new(amount, order, language, merchant_url, url_ok, url_ko, merchant_name, product_description,merchant_identifier)
+      params = {'Ds_SignatureVersion' => Redsys::Tpv.signature_version,
+                  'Ds_MerchantParameters'=> @tpv.merchant_params,
+                  'Ds_Signature'=> @tpv.merchant_signature,
+                  'button1' => 'Submit'
+      }
+      x = Net::HTTP.post_form(URI.parse('https://sis-t.redsys.es:25443/sis/realizarPago'), params)
+      puts x.body
+    end
+
   end
 end
